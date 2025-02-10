@@ -6,6 +6,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class DrawingApp extends StatefulWidget {
+  const DrawingApp({super.key});
+
   @override
   _DrawingAppState createState() => _DrawingAppState();
 }
@@ -98,6 +102,18 @@ class MyPainter extends CustomPainter {
 
     Rect mouthRect = Rect.fromCircle(center: Offset(size.width / 2, size.height / 2 + 20), radius: 50);
     canvas.drawArc(mouthRect, 0, pi, false, mouth);
+
+    Paint heartPaint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.fill;
+
+    Path heart = Path();
+    heart.moveTo(size.width / 2, size.height / 2 + 150);
+    heart.cubicTo(size.width / 2 - 50, size.height / 2 + 100, size.width / 2 - 100, size.height / 2 + 150, size.width / 2, size.height / 2 + 200);
+    heart.cubicTo(size.width / 2 + 100, size.height / 2 + 150, size.width / 2 + 50, size.height / 2 + 100, size.width / 2, size.height / 2 + 150);
+    heart.close();
+
+    canvas.drawPath(heart, heartPaint);
   }
 
   @override
